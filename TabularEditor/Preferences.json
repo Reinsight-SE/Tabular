@@ -1,0 +1,91 @@
+{
+  "CheckForUpdates": true,
+  "SkipPatchUpdates": false,
+  "CollectTelemetry": true,
+  "FormulaFixup": true,
+  "UseSemicolonsAsSeparators": false,
+  "DaxFormatterRequestTimeout": 5000,
+  "DaxFormatterSkipSpaceAfterFunctionName": false,
+  "AllowUnsupportedPBIFeatures": false,
+  "BackgroundBpa": true,
+  "ChangeDetectionOnLocalServers": true,
+  "AnnotateDeploymentMetadata": false,
+  "UsePbixFileNameWhenSavingToDisk": true,
+  "IgnoreInferredObjects": true,
+  "IgnoreInferredProperties": true,
+  "IgnoreTimestamps": true,
+  "SplitMultilineStrings": true,
+  "IgnoreLineageTags": false,
+  "ProxyUseSystem": true,
+  "ProxyAddress": "",
+  "ProxyUser": "",
+  "UsePowerQueryPartitionsByDefault": false,
+  "ProxyPasswordEncrypted": "",
+  "ScriptCompilerDirectoryPath": "",
+  "ScriptCompilerOptions": "",
+  "SaveToFolder_PrefixFiles": false,
+  "SaveToFolder_LocalRelationships": true,
+  "SaveToFolder_LocalPerspectives": true,
+  "SaveToFolder_LocalTranslations": true,
+  "Copy_IncludeTranslations": false,
+  "Copy_IncludePerspectives": true,
+  "Copy_IncludeRLS": true,
+  "Copy_IncludeOLS": true,
+  "View_DisplayFolders": true,
+  "View_HiddenObjects": true,
+  "View_AllObjectTypes": true,
+  "View_SortAlphabetically": false,
+  "View_Measures": true,
+  "View_Columns": true,
+  "View_Hierarchies": true,
+  "View_Partitions": true,
+  "View_MetadataInformation": true,
+  "View_SearchResults": "ByChild",
+  "SaveToFolder_Levels": [
+    "Data Sources",
+    "Roles",
+    "Tables",
+    "Tables/Calculation Items",
+    "Tables/Columns",
+    "Tables/Hierarchies",
+    "Tables/Measures",
+    "Tables/Partitions"
+  ],
+  "View_ColumnPreferences": [
+    {
+      "Name": "Name",
+      "Width": 463,
+      "Visible": true
+    },
+    {
+      "Name": "Parent",
+      "Width": 100,
+      "Visible": true
+    },
+    {
+      "Name": "Type",
+      "Width": 135,
+      "Visible": true
+    },
+    {
+      "Name": "Format",
+      "Width": 50,
+      "Visible": true
+    },
+    {
+      "Name": "Data type",
+      "Width": 23,
+      "Visible": true
+    },
+    {
+      "Name": "Source",
+      "Width": 203,
+      "Visible": true
+    },
+    {
+      "Name": "Description",
+      "Width": 65,
+      "Visible": true
+    }
+  ]
+}
