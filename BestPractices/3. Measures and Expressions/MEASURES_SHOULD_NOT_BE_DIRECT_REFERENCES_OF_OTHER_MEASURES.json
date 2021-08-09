@@ -1,0 +1,10 @@
+{
+  "ID": "MEASURES_SHOULD_NOT_BE_DIRECT_REFERENCES_OF_OTHER_MEASURES",
+  "Name": "[Measures Expressions] Measures should not be direct references of other measures",
+  "Category": "3. Measures and Expressions",
+  "Description": "This rule identifies measures which are simply a reference to another measure. As an example, consider a model with two measures: [MeasureA] and [MeasureB]. This rule would be triggered for MeasureB if MeasureB's DAX was MeasureB:=[MeasureA]. Such duplicative measures should be removed.",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "Model.AllMeasures.Any(DaxObjectName == current.Expression)",
+  "CompatibilityLevel": 1200
+}

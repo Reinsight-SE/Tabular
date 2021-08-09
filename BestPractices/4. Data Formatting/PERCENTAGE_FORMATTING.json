@@ -1,0 +1,10 @@
+{
+  "ID": "PERCENTAGE_FORMATTING",
+  "Name": "[Data Formatting] Percentages should be formatted with thousands separators and 1 decimal",
+  "Category": "4. Data Formatting",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "FormatString.Contains(\"%\") and FormatString <> \"#,0.0%;-#,0.0%;#,0.0%\"",
+  "FixExpression": "FormatString = \"#,0.0%;-#,0.0%;#,0.0%\"",
+  "CompatibilityLevel": 1200
+}

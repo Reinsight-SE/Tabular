@@ -1,0 +1,10 @@
+{
+  "ID": "FORMAT_FLAG_COLUMNS_AS_YES_NO_VALUE_STRINGS",
+  "Name": "[Data Formatting] Format flag columns as Yes/No value strings",
+  "Category": "4. Data Formatting",
+  "Description": "Flags must be properly formatted as Yes/No as this is easier to read than using 0/1 integer values.",
+  "Severity": 1,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "(\nName.StartsWith(\"Is\") and \nDataType = \"Int64\" and \nnot (IsHidden or Table.IsHidden)\n) \r\nor\r\n\n(\nName.EndsWith(\" Flag\") and \nDataType <> \"String\" and \nnot (IsHidden or Table.IsHidden)\n)",
+  "CompatibilityLevel": 1200
+}

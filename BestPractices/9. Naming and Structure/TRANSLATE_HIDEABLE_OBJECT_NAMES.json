@@ -1,0 +1,10 @@
+{
+  "ID": "TRANSLATE_HIDEABLE_OBJECT_NAMES",
+  "Name": "[Naming Structure] Translate Visible Object Names",
+  "Category": "9. Naming and Structure",
+  "Description": "When the model contains one or more cultures, all visible objects should have a name translation provided in that culture.",
+  "Severity": 1,
+  "Scope": "Table, Measure, Hierarchy, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn",
+  "Expression": "IsVisible and Model.Cultures.Any(it.Name != Model.Culture and string.IsNullOrEmpty(outerIt.TranslatedNames[it]))",
+  "CompatibilityLevel": 1200
+}

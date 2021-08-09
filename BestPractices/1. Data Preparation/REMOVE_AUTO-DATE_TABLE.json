@@ -1,0 +1,10 @@
+{
+  "ID": "REMOVE_AUTO-DATE_TABLE",
+  "Name": "[Data Preparation] [Performance] Remove auto-date tables",
+  "Category": "1. Data Preparation",
+  "Description": "Avoid using auto-date tables. Make sure to turn off auto-date table in the settings in Power BI Desktop. This will save memory resources. \r\nGo to File > Options and settings > Options > Current File > Data Load and remove checkmark from \"Auto date/time\"\r\nReference: https://www.youtube.com/watch?v=xu3uDEHtCrg",
+  "Severity": 2,
+  "Scope": "Table, CalculatedTable",
+  "Expression": "ObjectTypeName == \"Calculated Table\"\n\r\nand\r\n\n(\nName.StartsWith(\"DateTableTemplate_\") \n\nor \n\nName.StartsWith(\"LocalDateTable_\")\n)",
+  "CompatibilityLevel": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "ID": "SPLIT_DATE_AND_TIME",
+  "Name": "[Data Preparation] [Performance] Split date and time",
+  "Category": "1. Data Preparation",
+  "Description": "This rule finds datetime columns that have values not at midnight. To maximize performance, the time element should be split from date element (or the time component should be rounded to midnight as this will reduce column cardinality).\r\nReference: https://www.sqlbi.com/articles/separate-date-and-time-in-powerpivot-and-bism-tabular/",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "Convert.ToInt32(GetAnnotation(\"DateTimeWithHourMinSec\")) > 0",
+  "CompatibilityLevel": 1200
+}

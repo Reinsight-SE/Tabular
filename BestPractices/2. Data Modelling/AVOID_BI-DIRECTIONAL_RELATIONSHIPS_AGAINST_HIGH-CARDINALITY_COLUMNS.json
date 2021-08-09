@@ -1,0 +1,10 @@
+{
+  "ID": "AVOID_BI-DIRECTIONAL_RELATIONSHIPS_AGAINST_HIGH-CARDINALITY_COLUMNS",
+  "Name": "[Data Modelling] [Performance] Avoid bi-directional relationships against high-cardinality columns",
+  "Category": "2. Data Modelling",
+  "Description": "For best performance, it is recommended to avoid using bi-directional relationships against high-cardinality columns. In order to run this rule, you must first run the script shown here: https://www.elegantbi.com/post/vertipaqintabulareditor",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "UsedInRelationships.Any(CrossFilteringBehavior == CrossFilteringBehavior.BothDirections)\n\nand\n\nConvert.ToInt64(GetAnnotation(\"Vertipaq_Cardinality\")) > 100000",
+  "CompatibilityLevel": 1200
+}

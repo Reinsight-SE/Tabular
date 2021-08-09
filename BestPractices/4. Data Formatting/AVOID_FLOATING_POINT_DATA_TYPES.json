@@ -1,0 +1,11 @@
+{
+  "ID": "AVOID_FLOATING_POINT_DATA_TYPES",
+  "Name": "[Data Formatting] [Performance] Avoid floating point data types",
+  "Category": "4. Data Formatting",
+  "Description": "The \"Double\" (“Decimal number”) floating point data type should be avoided, as it can result in unpredictable roundoff errors and decreased performance in certain scenarios. \r\nUse \"Int64\" (“Whole number”) or \"Decimal\" (“Fixed decimal number”) where appropriate (but note that \"Decimal\" is limited to 4 digits after the decimal sign).",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "DataType = \"Double\"",
+  "FixExpression": "DataType = DataType.Decimal",
+  "CompatibilityLevel": 1200
+}

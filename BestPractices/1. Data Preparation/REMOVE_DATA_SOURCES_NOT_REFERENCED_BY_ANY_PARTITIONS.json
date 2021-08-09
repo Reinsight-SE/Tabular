@@ -1,0 +1,11 @@
+{
+  "ID": "REMOVE_DATA_SOURCES_NOT_REFERENCED_BY_ANY_PARTITIONS",
+  "Name": "[Data Preparation] Remove data sources not referenced by any partitions",
+  "Category": "1. Data Preparation",
+  "Description": "Data sources which are not referenced by any partitions may be removed.",
+  "Severity": 1,
+  "Scope": "ProviderDataSource, StructuredDataSource",
+  "Expression": "UsedByPartitions.Count() == 0",
+  "FixExpression": "Delete()",
+  "CompatibilityLevel": 1200
+}

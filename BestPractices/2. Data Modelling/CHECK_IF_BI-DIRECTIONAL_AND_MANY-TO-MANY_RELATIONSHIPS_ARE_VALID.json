@@ -1,0 +1,10 @@
+{
+  "ID": "CHECK_IF_BI-DIRECTIONAL_AND_MANY-TO-MANY_RELATIONSHIPS_ARE_VALID",
+  "Name": "[Data Modelling] [Performance] Check if bi-directional and many-to-many relationships are valid",
+  "Category": "2. Data Modelling",
+  "Description": "Bi-directional and many-to-many relationships may cause performance degradation or even have unintended consequences. Make sure to check these specific relationships to ensure they are working as designed and are actually necessary.\r\nReference: https://www.sqlbi.com/articles/bidirectional-relationships-and-ambiguity-in-dax/",
+  "Severity": 1,
+  "Scope": "Relationship",
+  "Expression": "FromCardinality.ToString() = \"Many\" and ToCardinality.ToString() = \"Many\"\r\nor\r\nCrossFilteringBehavior == CrossFilteringBehavior.BothDirections",
+  "CompatibilityLevel": 1200
+}

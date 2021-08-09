@@ -1,0 +1,10 @@
+{
+  "ID": "RELATIONSHIP_COLUMNS_SHOULD_BE_OF_INTEGER_DATA_TYPE",
+  "Name": "[Data Formatting] Relationship columns should be of integer data type",
+  "Category": "4. Data Formatting",
+  "Description": "It is a best practice for relationship columns to be of integer data type. This applies not only to data warehousing but data modeling as well.",
+  "Severity": 1,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "UsedInRelationships.Any()\n\nand \n\nDataType != DataType.Int64",
+  "CompatibilityLevel": 1200
+}

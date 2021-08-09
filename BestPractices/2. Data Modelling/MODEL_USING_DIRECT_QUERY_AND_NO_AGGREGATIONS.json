@@ -1,0 +1,10 @@
+{
+  "ID": "MODEL_USING_DIRECT_QUERY_AND_NO_AGGREGATIONS",
+  "Name": "[Data Modelling] [Performance] Consider using aggregations if using Direct Query in Power BI",
+  "Category": "2. Data Modelling",
+  "Description": "If using Direct Query in Power BI Premium, you may want to consider using aggregations in order to boost performance.\r\nReference: https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-aggregations",
+  "Severity": 1,
+  "Scope": "Model",
+  "Expression": "Tables.Any(ObjectTypeName == \"Table (DirectQuery)\")\r\nand\r\n\n\nAllColumns.Any(AlternateOf != null) == false\r\nand \r\nDefaultPowerBIDataSourceVersion.ToString() == \"PowerBI_V3\"",
+  "CompatibilityLevel": 1200
+}

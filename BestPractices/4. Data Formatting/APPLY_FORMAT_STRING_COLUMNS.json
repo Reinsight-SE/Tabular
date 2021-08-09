@@ -1,0 +1,10 @@
+{
+  "ID": "APPLY_FORMAT_STRING_COLUMNS",
+  "Name": "[Data Formatting] Provide format string for visible numeric columns",
+  "Category": "4. Data Formatting",
+  "Description": "Visible numeric columns should have their Format String property assigned",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "IsVisible\nand string.IsNullOrWhitespace(FormatString)\nand (DataType = \"Int64\" or DataType = \"DateTime\" or DataType = \"Double\" or DataType = \"Decimal\")\n",
+  "CompatibilityLevel": 1200
+}

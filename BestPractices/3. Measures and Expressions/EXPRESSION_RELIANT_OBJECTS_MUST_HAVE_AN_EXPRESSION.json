@@ -1,0 +1,10 @@
+{
+  "ID": "EXPRESSION_RELIANT_OBJECTS_MUST_HAVE_AN_EXPRESSION",
+  "Name": "[Measures Expressions] Expression-reliant objects must have an expression",
+  "Category": "3. Measures and Expressions",
+  "Description": "Calculated columns, calculation items and measures must have an expression. Without an expression, these objects will not show any values.",
+  "Severity": 3,
+  "Scope": "Measure, CalculatedColumn, CalculationItem",
+  "Expression": "string.IsNullOrWhiteSpace(Expression)",
+  "CompatibilityLevel": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "ID": "AVOID_STRUCTURED_DATA_SOURCES_WITH_PROVIDER_PARTITIONS",
+  "Name": "[Data Preparation] Avoid structured data sources with provider partitions",
+  "Category": "1. Data Preparation",
+  "Description": "Power BI does not support provider (a.k.a. 'legacy') partitions which reference structured data sources. Partitions which reference structured data sources must use the M-language. Otherwise, 'provider' partitions must reference a 'provider' data source. This can be resolved by converting the structured data source into a provider data source (see 2nd reference link below).\r\n\r\nReference: https://docs.microsoft.com/power-bi/admin/service-premium-connect-tools#data-source-declaration\r\nReference: https://www.elegantbi.com/post/convertdatasources",
+  "Severity": 2,
+  "Scope": "Partition",
+  "Expression": "SourceType == \"Query\"\r\nand\r\nDataSource.Type == \"Structured\"",
+  "CompatibilityLevel": 1200
+}

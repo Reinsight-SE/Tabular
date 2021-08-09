@@ -1,0 +1,10 @@
+{
+  "ID": "OBJECTS_WITH_NO_DESCRIPTION",
+  "Name": "[Explanations Documentation] Visible objects should have description",
+  "Category": "Explanations and Documentation",
+  "Description": "Add descriptions to objects. These descriptions are shown on hover within the Field List in Power BI Desktop. Additionally, you can leverage these descriptions to create an automated data dictionary (see link below).\r\nReference: https://www.elegantbi.com/post/datadictionary",
+  "Severity": 1,
+  "Scope": "Table, Measure, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, CalculationGroup",
+  "Expression": "string.IsNullOrWhitespace(Description)\r\nand\r\nIsHidden == false",
+  "CompatibilityLevel": 1200
+}

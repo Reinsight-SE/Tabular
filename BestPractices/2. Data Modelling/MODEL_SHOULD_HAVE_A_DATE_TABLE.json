@@ -1,0 +1,10 @@
+{
+  "ID": "MODEL_SHOULD_HAVE_A_DATE_TABLE",
+  "Name": "[Data Modelling] [Performance] Model should have a date table",
+  "Category": "2. Data Modelling",
+  "Description": "Generally speaking, models should generally have a date table. Models that do not have a date table generally are not taking advantage of features such as time intelligence or may not have a properly structured architecture.",
+  "Severity": 2,
+  "Scope": "Model",
+  "Expression": "Tables.Any(DataCategory == \"Time\" && Columns.Any(IsKey == true && DataType == \"DateTime\")) == false",
+  "CompatibilityLevel": 1200
+}

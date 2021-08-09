@@ -1,0 +1,10 @@
+{
+  "ID": "ENSURE_TABLES_HAVE_RELATIONSHIPS",
+  "Name": "[Data Modelling] Ensure tables have relationships",
+  "Category": "2. Data Modelling",
+  "Description": "This rule highlights tables which are not connected to any other table in the model with a relationship.",
+  "Severity": 1,
+  "Scope": "Table, CalculatedTable",
+  "Expression": "UsedInRelationships.Count() == 0",
+  "CompatibilityLevel": 1200
+}

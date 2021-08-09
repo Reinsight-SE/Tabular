@@ -1,0 +1,10 @@
+{
+  "ID": "CALCULATION_GROUPS_WITH_NO_CALCULATION_ITEMS",
+  "Name": "[Data Modelling] Calculation groups with no calculation items",
+  "Category": "2. Data Modelling",
+  "Description": "Calculation groups have no function unless they have calculation items.",
+  "Severity": 2,
+  "Scope": "CalculationGroup",
+  "Expression": "CalculationItems.Count == 0",
+  "CompatibilityLevel": 1200
+}

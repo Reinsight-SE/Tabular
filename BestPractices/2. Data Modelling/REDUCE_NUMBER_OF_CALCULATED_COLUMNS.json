@@ -1,0 +1,10 @@
+{
+  "ID": "REDUCE_NUMBER_OF_CALCULATED_COLUMNS",
+  "Name": "[Data Modelling] [Performance] Reduce number of calculated columns",
+  "Category": "2. Data Modelling",
+  "Description": "Calculated columns do not compress as well as data columns so they take up more memory. They also slow down processing times for both the table as well as process recalc. Offload calculated column logic to your data warehouse and turn these calculated columns into data columns.\r\nReference: https://www.elegantbi.com/post/top10bestpractices",
+  "Severity": 2,
+  "Scope": "Model",
+  "Expression": "AllColumns.Where(Type.ToString() == \"Calculated\").Count() > 5",
+  "CompatibilityLevel": 1200
+}

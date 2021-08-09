@@ -1,0 +1,10 @@
+{
+  "ID": "SNOWFLAKE_SCHEMA_ARCHITECTURE",
+  "Name": "[Data Modelling] [Performance] Consider a star-schema instead of a snowflake architecture",
+  "Category": "2. Data Modelling",
+  "Description": "Generally speaking, a star-schema is the optimal architecture for tabular models. That being the case, there are valid cases to use a snowflake approach. Please check your model and consider moving to a star-schema architecture.\r\nReference: https://docs.microsoft.com/en-us/power-bi/guidance/star-schema",
+  "Severity": 2,
+  "Scope": "Table, CalculatedTable",
+  "Expression": "UsedInRelationships.Any(current.Name == FromTable.Name)\r\nand\r\nUsedInRelationships.Any(current.Name == ToTable.Name)",
+  "CompatibilityLevel": 1200
+}

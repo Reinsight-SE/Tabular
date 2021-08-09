@@ -1,0 +1,11 @@
+{
+  "ID": "LAYOUT_LOCALIZE_DF",
+  "Name": "[Naming Structure] Translate Display Folders",
+  "Category": "9. Naming and Structure",
+  "Description": "Display Folder translations should be assigned for objects where the base DisplayFolder property has been assigned. Otherwise, users connecting to the model using a specific Culture will not see the Display Folder structure.",
+  "Severity": 1,
+  "Scope": "Measure, Hierarchy, DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "IsVisible\nand not string.IsNullOrEmpty(DisplayFolder)\nand Model.Cultures.Any(it.Name != Model.Culture and string.IsNullOrEmpty(outerIt.TranslatedDisplayFolders[it]))",
+  "FixExpression": "TranslatedDisplayFolders.Reset()",
+  "CompatibilityLevel": 1200
+}

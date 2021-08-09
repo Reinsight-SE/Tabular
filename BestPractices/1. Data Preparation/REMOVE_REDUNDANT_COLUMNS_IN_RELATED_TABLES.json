@@ -1,0 +1,10 @@
+{
+  "ID": "REMOVE_REDUNDANT_COLUMNS_IN_RELATED_TABLES",
+  "Name": "[Data Preparation] [Performance] Remove redundant columns in related tables",
+  "Category": "1. Data Preparation",
+  "Description": " Remove redundant columns (with same names) in related tables",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "UsedInRelationships.Any() == false \r\nand\r\nModel.AllColumns.Any(Name == current.Name and Table.Name != current.Table.Name and Table.UsedInRelationships.Any(FromTable.Name == current.Table.Name))",
+  "CompatibilityLevel": 1200
+}

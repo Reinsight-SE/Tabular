@@ -1,0 +1,11 @@
+{
+  "ID": "PERSPECTIVES_WITH_NO_OBJECTS",
+  "Name": "[Data Modelling] Remove perspectives with no objects",
+  "Category": "2. Data Modelling",
+  "Description": "Perspectives that contain no objects (tables) are most likely not necessary. In this rule, it is only necessary to check tables as adding a column/measure/hierarchy to a perspective also adds the table to the perspective. Additionally, tables in general covers calculated tables and calculation groups as well.",
+  "Severity": 1,
+  "Scope": "Perspective",
+  "Expression": "Model.Tables.Any(InPerspective[current.Name]) == false",
+  "FixExpression": "Delete()",
+  "CompatibilityLevel": 1200
+}

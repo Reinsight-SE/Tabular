@@ -1,0 +1,10 @@
+{
+  "ID": "LAYOUT_COLUMNS_HIERARCHIES_DF",
+  "Name": "[Naming Structure] Organize visible columns and hierarchies in display folders",
+  "Category": "9. Naming and Structure",
+  "Description": "Tables with more than 10 visible columns and/or hierarchies should have them organized in display folders for improved usability.",
+  "Severity": 1,
+  "Scope": "Table",
+  "Expression": "Columns.Count(IsVisible and string.IsNullOrEmpty(DisplayFolder)) +\nHierarchies.Count(IsVisible and string.IsNullOrEmpty(DisplayFolder))\n> 10",
+  "CompatibilityLevel": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "ID": "USE_THE_TREATAS_FUNCTION_INSTEAD_OF_INTERSECT",
+  "Name": "[Measures Expressions] [Performance] Use the TREATAS function instead of INTERSECT for virtual relationships",
+  "Category": "3. Measures and Expressions",
+  "Description": "The TREATAS function is more efficient and provides better performance than the INTERSECT function when used in virutal relationships.\r\nReference:  https://www.sqlbi.com/articles/propagate-filters-using-treatas-in-dax/",
+  "Severity": 2,
+  "Scope": "Measure, CalculationItem",
+  "Expression": "RegEx.IsMatch(Expression,\"(?i)INTERSECT\\s*\\(\")",
+  "CompatibilityLevel": 1400
+}

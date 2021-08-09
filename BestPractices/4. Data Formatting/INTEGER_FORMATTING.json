@@ -1,0 +1,10 @@
+{
+  "ID": "INTEGER_FORMATTING",
+  "Name": "[Data Formatting] Whole numbers should be formatted with thousands separators and no decimals",
+  "Category": "4. Data Formatting",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "not FormatString.Contains(\"$\") and not FormatString.Contains(\"%\") and not (FormatString = \"#,0\" or FormatString = \"#,0.0\")",
+  "FixExpression": "FormatString = \"#,0\"",
+  "CompatibilityLevel": 1200
+}

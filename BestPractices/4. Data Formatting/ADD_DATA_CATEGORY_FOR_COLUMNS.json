@@ -1,0 +1,10 @@
+{
+  "ID": "ADD_DATA_CATEGORY_FOR_COLUMNS",
+  "Name": "[Data Formatting] Add data category for columns",
+  "Category": "4. Data Formatting",
+  "Description": "Add Data Category property for appropriate columns. \r\nReference: https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-data-categorization",
+  "Severity": 1,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "string.IsNullOrWhitespace(DataCategory)\r\nand\r\n(\r\n(\r\nName.ToLower().Contains(\"country\")\r\nor \r\n\nName.ToLower().Contains(\"continent\"\n)\r\nor\r\nName.ToLower().Contains(\"city\")\r\n)\r\nand DataType == \"String\"\r\n)\r\nor \r\n(\r\n(\nName.ToLower() == \"latitude\" \n or \nName.ToLower() == \"longitude\")\r\nand (DataType == DataType.Decimal or DataType == DataType.Double)\r\n)",
+  "CompatibilityLevel": 1200
+}

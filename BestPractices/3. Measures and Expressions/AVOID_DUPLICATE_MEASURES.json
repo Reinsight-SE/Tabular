@@ -1,0 +1,9 @@
+{
+  "ID": "AVOID_DUPLICATE_MEASURES",
+  "Name": "[Measures Expressions] No two measures should have the same definition",
+  "Category": "3. Measures and Expressions",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "Model.AllMeasures.Any(Expression.Replace(\" \",\"\").Replace(\"\\n\",\"\").Replace(\"\\r\",\"\").Replace(\"\\t\",\"\") = outerIt.Expression.Replace(\" \",\"\").Replace(\"\\n\",\"\").Replace(\"\\r\",\"\").Replace(\"\\t\",\"\") and it <> outerIt)",
+  "CompatibilityLevel": 1200
+}

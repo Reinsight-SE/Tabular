@@ -1,0 +1,11 @@
+{
+  "ID": "MONTHCOLUMN_FORMATSTRING",
+  "Name": "[Data Formatting] Provide format string for \"Month\" columns",
+  "Category": "4. Data Formatting",
+  "Description": "Columns of type \"DateTime\" that have \"Month\" in their names should be formatted",
+  "Severity": 1,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "Name.IndexOf(\"Month\", \"OrdinalIgnoreCase\") >= 0 and DataType = \"DateTime\" and string.IsNullOrWhitespace(FormatString)",
+  "FixExpression": "FormatString = \"MMMM yyyy\"",
+  "CompatibilityLevel": 1200
+}

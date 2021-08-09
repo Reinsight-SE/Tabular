@@ -1,0 +1,10 @@
+{
+  "ID": "DATA_COLUMNS_MUST_HAVE_A_SOURCE_COLUMN",
+  "Name": "[Data Preparation] Data columns must have a source column",
+  "Category": "1. Data Preparation",
+  "Description": "Data columns must have a source column. A data column without a source column will cause an error when processing the model.",
+  "Severity": 3,
+  "Scope": "DataColumn",
+  "Expression": "string.IsNullOrWhitespace(SourceColumn)",
+  "CompatibilityLevel": 1200
+}

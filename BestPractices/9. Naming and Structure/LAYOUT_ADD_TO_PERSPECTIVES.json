@@ -1,0 +1,10 @@
+{
+  "ID": "LAYOUT_ADD_TO_PERSPECTIVES",
+  "Name": "[Naming Structure] Add objects to perspectives (if used)",
+  "Category": "9. Naming and Structure",
+  "Description": "if the tabular model uses perspectives, visible tables, columns, measures, and hierarchies should be assigned to at least one perspective. Otherwise, the objects will only be visible when connecting directly to the model.",
+  "Severity": 1,
+  "Scope": "Table, Measure, Hierarchy, DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "IsVisible\nand Model.Perspectives.Any()\nand not InPerspective.Any(it)",
+  "CompatibilityLevel": 1200
+}

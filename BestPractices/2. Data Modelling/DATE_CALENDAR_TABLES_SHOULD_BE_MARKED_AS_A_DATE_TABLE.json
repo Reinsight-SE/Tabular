@@ -1,0 +1,10 @@
+{
+  "ID": "DATE_CALENDAR_TABLES_SHOULD_BE_MARKED_AS_A_DATE_TABLE",
+  "Name": "[Data Modelling] [Performance] Date/calendar tables should be marked as a date table",
+  "Category": "2. Data Modelling",
+  "Description": "This rule looks for tables that contain the words 'date' or 'calendar' as they should likely be marked as a date table.\r\nReference: https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-date-tables",
+  "Severity": 2,
+  "Scope": "Table, CalculatedTable",
+  "Expression": "(Name.ToUpper().Contains(\"DATE\") or Name.ToUpper().Contains(\"CALENDAR\"))\n\nand\n\n(\nDataCategory <> \"Time\"\n\nor\n\nColumns.Any(IsKey == true && DataType == \"DateTime\") == false\n)",
+  "CompatibilityLevel": 1200
+}

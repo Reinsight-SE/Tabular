@@ -1,0 +1,10 @@
+{
+  "ID": "USE_DIVIDE_FUNCTION_FOR_DIVISION",
+  "Name": "[Measures Expressions] Use DIVIDE function for division",
+  "Category": "3. Measures and Expressions",
+  "Description": "Use the DIVIDE  function instead of using \"/\" unless the denominator is a constant value. The DIVIDE function resolves divide-by-zero cases. As such, it is recommended to use to avoid errors.  \r\nReference: https://docs.microsoft.com/en-us/power-bi/guidance/dax-divide-function-operator",
+  "Severity": 2,
+  "Scope": "Measure, CalculatedColumn, CalculationItem",
+  "Expression": "Tokenize().Any(\r\n    Type = DIV and\r\n    Next.Type <> INTEGER_LITERAL and\r\n    Next.Type <> REAL_LITERAL\r\n)",
+  "CompatibilityLevel": 1200
+}

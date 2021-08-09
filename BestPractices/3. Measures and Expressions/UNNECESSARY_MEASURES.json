@@ -1,0 +1,11 @@
+{
+  "ID": "UNNECESSARY_MEASURES",
+  "Name": "[Measures Expressions] Remove unnecessary measures",
+  "Category": "3. Measures and Expressions",
+  "Description": "Hidden measures that are not referenced by any DAX expressions should be removed for maintainability",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "(Table.IsHidden or IsHidden) and ReferencedBy.Count = 0",
+  "FixExpression": "Delete()",
+  "CompatibilityLevel": 1200
+}

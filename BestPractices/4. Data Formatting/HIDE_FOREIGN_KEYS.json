@@ -1,0 +1,11 @@
+{
+  "ID": "HIDE_FOREIGN_KEYS",
+  "Name": "[Data Formatting] Hide foreign key columns",
+  "Category": "4. Data Formatting",
+  "Description": "Foreign keys should always be hidden.\r\nColumns used on the Many side of a relationship should be hidden, as the related (dimension) table is likely the best place to apply a filter context.",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "UsedInRelationships.Any(FromColumn.Name == current.Name and FromCardinality == \"Many\")\n\r\nand\r\n\nIsHidden == false",
+  "FixExpression": "IsHidden = true",
+  "CompatibilityLevel": 1200
+}

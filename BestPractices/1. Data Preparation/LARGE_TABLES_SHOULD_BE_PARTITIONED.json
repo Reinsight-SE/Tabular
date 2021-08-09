@@ -1,0 +1,10 @@
+{
+  "ID": "LARGE_TABLES_SHOULD_BE_PARTITIONED",
+  "Name": "[Data Preparation] [Performance]​ Large tables should be partitioned",
+  "Category": "1. Data Preparation",
+  "Description": "Large tables should be partitioned in order to optimize processing. In order for this rule to run properly, you must run the script shown here: https://www.elegantbi.com/post/vertipaqintabulareditor",
+  "Severity": 2,
+  "Scope": "Table",
+  "Expression": "Convert.ToInt64(GetAnnotation(\"Vertipaq_RowCount\")) > 25000000\r\nand\r\nPartitions.Count = 1",
+  "CompatibilityLevel": 1200
+}

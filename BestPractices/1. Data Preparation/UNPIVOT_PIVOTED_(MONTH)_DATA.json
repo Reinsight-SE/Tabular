@@ -1,0 +1,10 @@
+{
+  "ID": "UNPIVOT_PIVOTED_(MONTH)_DATA",
+  "Name": "[Data Preparation] [Performance] Unpivot pivoted (month) data",
+  "Category": "1. Data Preparation",
+  "Description": "Avoid using pivoted data in your tables. This rule checks specifically for pivoted data by month.\r\nReference: https://www.elegantbi.com/post/top10bestpractices",
+  "Severity": 2,
+  "Scope": "Table, CalculatedTable",
+  "Expression": "Columns.Any(Name.ToUpper().Contains(\"JAN\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))\nand\nColumns.Any(Name.ToUpper().Contains(\"FEB\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))\nand\nColumns.Any(Name.ToUpper().Contains(\"MAR\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))\nand\nColumns.Any(Name.ToUpper().Contains(\"APR\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))\nand\nColumns.Any(Name.ToUpper().Contains(\"MAY\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))\nand\nColumns.Any(Name.ToUpper().Contains(\"JUN\") && (DataType == DataType.Int64 || DataType == DataType.Decimal || DataType == DataType.Double))",
+  "CompatibilityLevel": 1200
+}

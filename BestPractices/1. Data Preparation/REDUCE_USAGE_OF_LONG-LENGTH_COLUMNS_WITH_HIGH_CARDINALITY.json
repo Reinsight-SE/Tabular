@@ -1,0 +1,10 @@
+{
+  "ID": "REDUCE_USAGE_OF_LONG-LENGTH_COLUMNS_WITH_HIGH_CARDINALITY",
+  "Name": "[Data Preparation] [Performance] Reduce usage of long-length columns with high cardinality",
+  "Category": "1. Data Preparation",
+  "Description": "It is best to avoid lengthy text columns. This is especially true if the column has many unique values. These types of columns can cause longer processing times, bloated model sizes, as well as slower user queries. Long length is defined as more than 100 characters.",
+  "Severity": 2,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "Convert.ToInt64(GetAnnotation(\"LongLengthRowCount\")) > 500000",
+  "CompatibilityLevel": 1200
+}

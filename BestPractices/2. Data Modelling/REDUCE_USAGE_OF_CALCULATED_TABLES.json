@@ -1,0 +1,10 @@
+{
+  "ID": "REDUCE_USAGE_OF_CALCULATED_TABLES",
+  "Name": "[Data Modelling] [Performance] Reduce usage of calculated tables",
+  "Category": "2. Data Modelling",
+  "Description": "Migrate calculated table logic to your data warehouse. Reliance on calculated tables will lead to technical debt and potential misalignments if you have multiple models on your platform.",
+  "Severity": 2,
+  "Scope": "CalculatedTable",
+  "Expression": "1=1",
+  "CompatibilityLevel": 1200
+}

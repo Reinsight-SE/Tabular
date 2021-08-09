@@ -1,0 +1,11 @@
+{
+  "ID": "PARTITION_NAME_SHOULD_MATCH_TABLE_NAME_FOR_SINGLE_PARTITION_TABLES",
+  "Name": "[Naming Structure] Partition name should match table name for single partition tables",
+  "Category": "9. Naming and Structure",
+  "Description": "Tables with just one partition should match their table and partition names. Tables with more than one partition should have each partition name starting with the table name.",
+  "Severity": 1,
+  "Scope": "Table",
+  "Expression": "(Partitions.Count = 1 and Partitions[0].Name <> Name)",
+  "FixExpression": "Partitions[0].Name = it.Name",
+  "CompatibilityLevel": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "ID": "PROVIDE_FORMAT_STRING_FOR_VISIBLE_NUM_MEASURES",
+  "Name": "[Data Formatting] Provide format string for visible numeric measures",
+  "Category": "4. Data Formatting",
+  "Description": "Visible numeric measures should have their format string property assigned",
+  "Severity": 2,
+  "Scope": "Measure",
+  "Expression": "not IsHidden \r\nand not Table.IsHidden \r\nand string.IsNullOrWhitespace(FormatString)\r\nand (GetAnnotation(\"Format\").Contains(\"Number\") or GetAnnotation(\"Format\").Contains(\"Percentage\"))",
+  "CompatibilityLevel": 1200
+}

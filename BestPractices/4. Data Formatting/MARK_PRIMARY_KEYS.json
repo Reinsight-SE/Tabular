@@ -1,0 +1,11 @@
+{
+  "ID": "MARK_PRIMARY_KEYS",
+  "Name": "[Data Formatting] Mark primary key columns",
+  "Category": "4. Data Formatting",
+  "Description": "Set the 'Key' property to 'True' for primary key columns within the column properties.",
+  "Severity": 1,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "UsedInRelationships.Any(ToTable.Name == current.Table.Name and ToColumn.Name == current.Name and ToCardinality == \"One\")\r\n\nand\r\n\nIsKey == false\r\nand\r\ncurrent.Table.DataCategory != \"Time\"",
+  "FixExpression": "IsKey = true",
+  "CompatibilityLevel": 1200
+}

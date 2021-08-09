@@ -1,0 +1,10 @@
+{
+  "ID": "SPECIAL_CHARS_IN_OBJECT_NAMES",
+  "Name": "[Naming Structure] Object names must not contain special characters",
+  "Category": "9. Naming and Structure",
+  "Description": "Tabs, line breaks, etc.",
+  "Severity": 2,
+  "Scope": "Model, Table, Measure, Hierarchy, Perspective, Partition, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, CalculationGroup, CalculationItem",
+  "Expression": "Name.IndexOf(char(9)) > -1\r\nor\r\n\nName.IndexOf(char(10)) > -1 \r\nor\r\n\nName.IndexOf(char(13)) > -1",
+  "CompatibilityLevel": 1200
+}

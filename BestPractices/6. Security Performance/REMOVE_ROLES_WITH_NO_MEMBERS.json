@@ -1,0 +1,11 @@
+{
+  "ID": "REMOVE_ROLES_WITH_NO_MEMBERS",
+  "Name": "[Security] Remove roles with no members",
+  "Category": "6. Security Performance",
+  "Description": "May remove roles with no members.",
+  "Severity": 1,
+  "Scope": "ModelRole",
+  "Expression": "Members.Count() == 0",
+  "FixExpression": "Delete()",
+  "CompatibilityLevel": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "ID": "LAYOUT_MEASURES_DF",
+  "Name": "[Naming Structure] Organize visible measures in display folders",
+  "Category": "9. Naming and Structure",
+  "Description": "Tables with more than 10 visible measures should have them organized in display folders for improved usability",
+  "Severity": 1,
+  "Scope": "Table",
+  "Expression": "Measures.Count(IsVisible and string.IsNullOrEmpty(DisplayFolder)) > 10",
+  "CompatibilityLevel": 1200
+}

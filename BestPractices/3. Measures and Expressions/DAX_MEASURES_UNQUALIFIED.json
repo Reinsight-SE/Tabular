@@ -1,0 +1,10 @@
+{
+  "ID": "DAX_MEASURES_UNQUALIFIED",
+  "Name": "[Measures Expressions] Measure references should be unqualified",
+  "Category": "3. Measures and Expressions",
+  "Description": "Using unqualified measure references makes it easier to distinguish between column and measure references, and also helps avoid certain errors. When referencing a measure using DAX, do not specify the table name. Use only the measure name in square brackets.\r\nReference: https://www.elegantbi.com/post/top10bestpractices",
+  "Severity": 3,
+  "Scope": "Measure, CalculatedColumn, CalculatedTable, KPI, CalculationItem",
+  "Expression": "DependsOn.Any(Key.ObjectType = \"Measure\" and Value.Any(FullyQualified))",
+  "CompatibilityLevel": 1200
+}
