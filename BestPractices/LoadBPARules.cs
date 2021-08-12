@@ -2,7 +2,7 @@ System.Net.WebClient w = new System.Net.WebClient();
 
 string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
 string downloadLoc = path+@"\TabularEditor\BPARules.json";
-string url = "https://raw.githubusercontent.com/microsoft/Analysis-Services/master/BestPracticeRules/BPARules.json";
+string url = "https://github.com/Reinsight-SE/Tabular/raw/main/BestPractices/BPARules.json";
 string dlMessage = "Downloaded BPARules.json. Please restart Tabular Editor.";
 
 if (System.IO.File.Exists(downloadLoc))
