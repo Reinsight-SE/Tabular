@@ -17,8 +17,8 @@
     {
       "Name": "Best Practices\\3. Export BPA Results",
       "Enabled": "true",
-      "Execute": "using TabularEditor.BestPracticeAnalyzer;\r\n\r\nvar bpa = new Analyzer();\r\nbpa.SetModel(Model);\r\n\r\nvar sb = new System.Text.StringBuilder();\r\nstring newline = Environment.NewLine;\r\n\r\nsb.Append(\"RuleCategory\" + '\\t' + \"RuleName\" + '\\t' + \"ObjectName\" + '\\t' + \"ObjectType\" + '\\t' + \"RuleSeverity\" + '\\t' + \"HasFixExpression\" + newline);\r\n\r\nforeach (var a in bpa.AnalyzeAll().ToList())\r\n{\r\n    sb.Append(a.Rule.Category + '\\t' + a.RuleName + '\\t' + a.ObjectName + '\\t' + a.ObjectType + '\\t' + a.Rule.Severity + '\\t' + a.CanFix + newline);\r\n}\r\n\r\nsb.Output();",
-      "Tooltip": "Export BPA results (can be copied to Excel)",
+      "Execute": "using TabularEditor.BestPracticeAnalyzer;\r\n\r\nvar bpa = new Analyzer();\r\nbpa.SetModel(Model);\r\n\r\nvar sb = new System.Text.StringBuilder();\r\nstring newline = Environment.NewLine;\r\n\r\nsb.Append(\"RuleCategory\" + '\\t' + \"RuleName\" + '\\t' + \"ObjectName\" + '\\t' + \"ObjectType\" + '\\t' + \"Ignored\" + '\\t' + \"RuleSeverity\" + '\\t' + \"HasFixExpression\" + newline);\r\n\r\nforeach (var a in bpa.AnalyzeAll().ToList())\r\n{\r\n    sb.Append(a.Rule.Category + '\\t' + a.RuleName + '\\t' + a.ObjectName + '\\t' + a.ObjectType + '\\t' + a.Ignored + '\\t' + a.Rule.Severity + '\\t' + a.CanFix + newline);\r\n}\r\n\r\nsb.Output();",
+      "Tooltip": "Export BPA validation details (can be pasted to Excel)",
       "ValidContexts": "Model"
     }
   ]
