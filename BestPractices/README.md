@@ -9,7 +9,7 @@ See general introduction in [official Power BI blog post](https://powerbi.micros
 Running this collection of rules inside [Tabular Editor](https://tabulareditor.com/ "Tabular Editor")'s [Best Practice Analyzer](https://docs.tabulareditor.com/Best-Practice-Analyzer.html "Best Practice Analyzer") will inform you of potential issues to fix or improvements to be made with regard to performance optimization and model design.
 
 ## References 
-The code is this repository is based on the following main sources (combined, adjusted, extended, and tested):
+The code in this repository is based on the following main sources (combined, adjusted, extended, and tested):
 1. [Best practice rules on Microsoft Analysis Services GitHub](https://github.com/microsoft/Analysis-Services/tree/master/BestPracticeRules)
 2. [Best practice rules on Tabular Editor GitHub](https://github.com/TabularEditor/BestPracticeRules)
 3. [Supporting scripts by M.Kovalsky from Power BI Customer Advisory Team at Microsoft](https://github.com/m-kovalsky/Tabular)
@@ -25,10 +25,10 @@ In case of issues or specific requests: [submit an issue](https://github.com/Rei
 Following these steps will automatically load the Best Practice Rules into your local Tabular Editor. Note that this will overwrite the existing BPARules.json file (if you are already have one).
 
 1. Open [Tabular Editor](https://tabulareditor.com/ "Tabular Editor").
-2. Connect to a model.
+2. Connect to a model (automatically if opened via Power BI Desktop External Tools).
 3. Run the code from [LoadBPARules.cs](https://github.com/Reinsight-SE/Tabular/raw/main/BestPractices/LoadBPARules.cs) in [Advanced Scripting](https://docs.tabulareditor.com/Advanced-Scripting.html "Advanced Scripting") window.
 4. Close and reopen [Tabular Editor](https://tabulareditor.com/ "Tabular Editor").
-5. Connect to a model.
+5. Connect to a model (automatically if opened via Power BI Desktop External Tools).
 6. Select 'Tools' from the File menu and select 'Best Practice Analyzer'.
 7. Click the Refresh icon (in blue).
 
