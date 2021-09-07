@@ -4,7 +4,7 @@
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 
-string filePath = @"C:\Desktop\Descriptions"; // Update this to be the location of the Descriptions file
+string filePath = @"C:\Temp\Descriptions"; // Update this to be the location of the Descriptions file
 string excelFilePath = filePath + ".xlsx"; 
 string excelTabName = "ModelDescriptions";
 
