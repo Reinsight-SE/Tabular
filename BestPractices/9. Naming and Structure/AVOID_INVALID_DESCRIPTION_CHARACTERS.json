@@ -1,0 +1,11 @@
+{
+  "ID": "AVOID_INVALID_DESCRIPTION_CHARACTERS",
+  "Name": "[Naming Structure] Avoid invalid characters in descriptions",
+  "Category": "9. Naming and Structure",
+  "Description": "This rule identifies if a description for a given object in your model (i.e. table/column/measure) which contains an invalid character. Invalid characters will cause an error when deploying the model (and failure to deploy). This rule has a fix expression which converts the invalid character into a space, resolving the issue.",
+  "Severity": 3,
+  "Scope": "Table, Measure, Hierarchy, Level, Perspective, Partition, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, KPI, ModelRole, CalculationGroup, CalculationItem",
+  "Expression": "Description.ToCharArray().Any(char.IsControl(it) and !char.IsWhiteSpace(it))",
+  "FixExpression": "Description = string.Concat( it.Description.ToCharArray().Select( c => (char.IsControl(c) && !char.IsWhiteSpace(c)) ? ' ': c ))",
+  "CompatibilityLevel": 1200
+}
