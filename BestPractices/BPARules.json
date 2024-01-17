@@ -30,6 +30,16 @@
     "CompatibilityLevel": 1200
   },
   {
+  "ID": "RELATIONSHIP_COLUMNS_SAME_DATA_TYPE",
+  "Name": "[Data Preparation] [Performance]​ Relationship columns should be of the same data type",
+  "Category": "1. Data Preparation",
+  "Description": "Columns used in a relationship should be of the same data type. Ideally, they will be of integer data type (see the related rule '[Formatting] Relationship columns should be of integer data type'). Having columns within a relationship which are of different data types may lead to various issues.",
+  "Severity": 3,
+  "Scope": "Relationship",
+  "Expression": "FromColumn.DataType != ToColumn.DataType",
+  "CompatibilityLevel": 1200
+  },
+  {
     "ID": "REMOVE_AUTO-DATE_TABLE",
     "Name": "[Data Preparation] [Performance] Remove auto-date tables",
     "Category": "1. Data Preparation",
@@ -678,6 +688,28 @@
     "Severity": 1,
     "Scope": "Table",
     "Expression": "Measures.Count(IsVisible and string.IsNullOrEmpty(DisplayFolder)) > 10",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "AVOID_INVALID_NAME_CHARACTERS",
+    "Name": "[Naming Structure] Avoid invalid characters in names",
+    "Category": "9. Naming and Structure",
+    "Description": "This rule identifies if a name for a given object in your model (i.e. table/column/measure) which contains an invalid character. Invalid characters will cause an error when deploying the model (and failure to deploy). This rule has a fix expression which converts the invalid character into a space, resolving the issue.",
+    "Severity": 3,
+    "Scope": "Table, Measure, Hierarchy, Level, Perspective, Partition, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, KPI, ModelRole, CalculationGroup, CalculationItem",
+    "Expression": "Name.ToCharArray().Any(char.IsControl(it) and !char.IsWhiteSpace(it))",
+    "FixExpression": "Name = string.Concat( it.Name.ToCharArray().Select( c => (char.IsControl(c) && !char.IsWhiteSpace(c)) ? ' ': c ))",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "AVOID_INVALID_DESCRIPTION_CHARACTERS",
+    "Name": "[Naming Structure] Avoid invalid characters in descriptions",
+    "Category": "9. Naming and Structure",
+    "Description": "This rule identifies if a description for a given object in your model (i.e. table/column/measure) which contains an invalid character. Invalid characters will cause an error when deploying the model (and failure to deploy). This rule has a fix expression which converts the invalid character into a space, resolving the issue.",
+    "Severity": 3,
+    "Scope": "Table, Measure, Hierarchy, Level, Perspective, Partition, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, KPI, ModelRole, CalculationGroup, CalculationItem",
+    "Expression": "Description.ToCharArray().Any(char.IsControl(it) and !char.IsWhiteSpace(it))",
+    "FixExpression": "Description = string.Concat( it.Description.ToCharArray().Select( c => (char.IsControl(c) && !char.IsWhiteSpace(c)) ? ' ': c ))",
     "CompatibilityLevel": 1200
   },
   {
