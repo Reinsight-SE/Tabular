@@ -1,9 +1,0 @@
-{
-  "ID": "FIRST_LETTER_OF_OBJECTS_MUST_BE_CAPITALIZED",
-  "Name": "[Naming Structure] First letter of objects must be capitalized",
-  "Category": "9. Naming and Structure",
-  "Severity": 1,
-  "Scope": "Table, Measure, Hierarchy, CalculatedColumn, CalculatedTable, CalculatedTableColumn, CalculationGroup",
-  "Expression": "Name.Substring(0,1).ToUpper() != Name.Substring(0,1)",
-  "CompatibilityLevel": 1200
-}
