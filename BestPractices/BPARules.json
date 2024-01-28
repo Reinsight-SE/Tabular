@@ -96,7 +96,7 @@
     "Description": "Hidden columns that are not referenced by any DAX expressions, relationships, hierarchy levels or Sort By-properties will likely not be used by clients and thus take up unnecessary space. \r\nIf you are certain that no external DAX or MDX queries use such columns, removing them from the model to save space and improve processing time.",
     "Severity": 2,
     "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
-    "Expression": "(IsHidden or Table.IsHidden)\n\nand ReferencedBy.Count = 0 \n\nand (not UsedInRelationships.Any())\n\nand (not UsedInSortBy.Any())\n\nand (not UsedInHierarchies.Any())\n\nand (not Table.RowLevelSecurity.Any(\n    it <> null and \n    it.IndexOf(\"[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0\n))\n\nand (not Model.Roles.Any(RowLevelSecurity.Any(\n    it <> null and \n    (\n        it.IndexOf(current.Table.Name + \"[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0 or\n        it.IndexOf(\"'\" + current.Table.Name + \"'[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0\n    )\n)))",
+    "Expression": "(IsHidden or Table.IsHidden)\n\nand ReferencedBy.Count = 0 \n\nand (not UsedInRelationships.Any())\n\nand (not UsedInSortBy.Any())\n\nand (not UsedInHierarchies.Any())\n\nand (not Table.RowLevelSecurity.Any(\n    it <> null and \n    it.IndexOf(\"[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0\n))\n\nand (not Model.Roles.Any(RowLevelSecurity.Any(\n    it <> null and \n    (\n        it.IndexOf(current.Table.Name + \"[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0 or\n        it.IndexOf(\"'\" + current.Table.Name + \"'[\" + current.Name + \"]\", \"OrdinalIgnoreCase\") >= 0\n    )\n)))\r\nand not (\r\nObjectLevelSecurity.Any(it.ToString() == \"None\"))\r\nand not (\r\nTable.ObjectLevelSecurity.Any(it.ToString() == \"None\"))",
     "FixExpression": "Delete()",
     "CompatibilityLevel": 1200
   },
@@ -107,8 +107,18 @@
     "Description": "Data sources which are not referenced by any partitions may be removed.",
     "Severity": 1,
     "Scope": "ProviderDataSource, StructuredDataSource",
-    "Expression": "UsedByPartitions.Count() == 0",
+    "Expression": "UsedByPartitions.Count() == 0\r\nand not Model.Tables.Any(SourceExpression.Contains(OuterIt.Name))\r\nand not Model.AllPartitions.Any(Query.Contains(OuterIt.Name))",
     "FixExpression": "Delete()",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "AVOID_STRUCTURED_DATA_SOURCES_WITH_PROVIDER_PARTITIONS",
+    "Name": "[Data Preparation] Avoid structured data sources with provider partitions",
+    "Category": "1. Data Preparation",
+    "Description": "Power BI does not support provider (a.k.a. 'legacy') partitions which reference structured data sources. Partitions which reference structured data sources must use the M-language. Otherwise, 'provider' partitions must reference a 'provider' data source. This can be resolved by converting the structured data source into a provider data source (see 2nd reference link below).\r\n\r\nReference: https://docs.microsoft.com/power-bi/admin/service-premium-connect-tools#data-source-declaration\r\nReference: https://www.elegantbi.com/post/convertdatasources",
+    "Severity": 2,
+    "Scope": "Partition",
+    "Expression": "SourceType == \"Query\"\r\nand\r\nDataSource.Type == \"Structured\"",
     "CompatibilityLevel": 1200
   },
   {
@@ -118,8 +128,19 @@
     "Description": "To speed up processing time and conserve memory after processing, attribute hierarchies should not be built for columns that are never used for slicing by MDX clients. In other words, all hidden columns that are not used as a Sort By Column or referenced in user hierarchies should have their IsAvailableInMdx property set to false.\r\nReference: https://blog.crossjoin.co.uk/2018/07/02/isavailableinmdx-ssas-tabular/",
     "Severity": 2,
     "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
-    "Expression": "IsAvailableInMDX\r\nand\r\n\n(IsHidden or Table.IsHidden)\r\nand\r\n\nnot UsedInSortBy.Any() \r\nand\r\n\nnot UsedInHierarchies.Any()",
+    "Expression": "IsAvailableInMDX\r\nand\r\n\n(IsHidden or Table.IsHidden)\r\nand\r\n\nnot UsedInSortBy.Any() \r\nand\r\n\nnot UsedInHierarchies.Any()\r\nand\r\nnot UsedInVariations.Any()\r\nand\r\nSortByColumn = null",
     "FixExpression": "IsAvailableInMDX = false",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "SET_ISAVAILABLEINMDX_TO_TRUE_ON_NECESSARY_COLUMNS",
+    "Name": "[Error Prevention] Set IsAvailableInMdx to true on necessary columns",
+    "Category": "2. Data Modelling",
+    "Description": "In order to avoid errors, ensure that attribute hierarchies are enabled if a column is used for sorting another column, used in a hierarchy, used in variations, or is sorted by another column.",
+    "Severity": 3,
+    "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+    "Expression": "IsAvailableInMDX = false\r\n\r\nand\r\n(\r\nUsedInSortBy.Any()\r\nor\r\nUsedInHierarchies.Any()\r\nor\r\nUsedInVariations.Any()\r\nor\r\nSortByColumn != null\r\n)",
+	"FixExpression": "IsAvailableInMDX = true",
     "CompatibilityLevel": 1200
   },
   {
@@ -188,7 +209,7 @@
     "Category": "2. Data Modelling",
     "Severity": 2,
     "Scope": "Relationship",
-    "Expression": "FromCardinality == \"Many\"\nand\nToCardinality == \"Many\"\nand\nCrossFilteringBehavior == \"BothDirections\"",
+    "Expression": "FromCardinality == \"Many\"\n\r\nand\r\n\nToCardinality == \"Many\"\r\n\nand\r\n\nCrossFilteringBehavior == \"BothDirections\"",
     "CompatibilityLevel": 1200
   },
   {
@@ -413,6 +434,16 @@
     "CompatibilityLevel": 1200
   },
   {
+    "ID": "AVOID_USING_1_MINUS_X_DIV_Y_SYNTAX",
+    "Name": "[Measures Expressions] Avoid using '1-(x/y)' syntax",
+    "Category": "3. Measures and Expressions",
+    "Description": "Instead of using the '1-(x/y)' or '1+(x/y)' syntax to achieve a percentage calculation, use the basic DAX functions (as shown below). Using the improved syntax will generally improve the performance. The '1+/-...' syntax always returns a value whereas the solution without the '1+/-...' does not (as the value may be 'blank'). Therefore the '1+/-...' syntax may return more rows/columns which may result in a slower query speed.\r\n\r\nLet's clarify with an example:\r\n\r\nAvoid this: 1 - SUM ( 'Sales'[CostAmount] ) / SUM( 'Sales'[SalesAmount] )\r\nBetter: DIVIDE ( SUM ( 'Sales'[SalesAmount] ) - SUM ( 'Sales'[CostAmount] ), SUM ( 'Sales'[SalesAmount] ) )\r\nBest: VAR x = SUM ( 'Sales'[SalesAmount] ) RETURN DIVIDE ( x - SUM ( 'Sales'[CostAmount] ), x )",
+    "Severity": 2,
+    "Scope": "Measure, CalculatedColumn, CalculationItem",
+    "Expression": "RegEx.IsMatch(Expression,\"[0-9]+\\s*[-+]\\s*[\\(]*\\s*(?i)SUM\\s*\\(\\s*\\'*[A-Za-z0-9 _]+\\'*\\s*\\[[A-Za-z0-9 _]+\\]\\s*\\)\\s*\\/\")\r\nor\r\nRegEx.IsMatch(Expression,\"[0-9]+\\s*[-+]\\s*(?i)DIVIDE\\s*\\(\")",
+    "CompatibilityLevel": 1200
+  },
+  {
     "ID": "AVOID_FLOATING_POINT_DATA_TYPES",
     "Name": "[Data Formatting] [Performance] Avoid floating point data types",
     "Category": "4. Data Formatting",
@@ -441,7 +472,7 @@
     "Severity": 1,
     "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
     "Expression": "Name.IndexOf(\"Date\", \"OrdinalIgnoreCase\") >= 0 and DataType = \"DateTime\" and string.IsNullOrWhitespace(FormatString)",
-    "FixExpression": "FormatString = \"mm/dd/yyyy\"",
+    "FixExpression": "FormatString = \"yyyy-mm-dd\"",
     "CompatibilityLevel": 1200
   },
   {
@@ -581,12 +612,22 @@
   },
   {
     "ID": "CHECK_IF_DYNAMIC_ROW_LEVEL_SECURITY_(RLS)__IS_NECESSARY",
-    "Name": "[Security] [Performance] Check if dynamic row level security (RLS)  is necessary",
+    "Name": "[Security] [Performance] Check if dynamic row level security (RLS) is necessary",
     "Category": "6. Security Performance",
     "Description": "Usage of dynamic row level security (RLS) can add memory and performance overhead. Please research the pros/cons of using it.\r\nReference: https://docs.microsoft.com/en-us/power-bi/admin/service-admin-rls",
     "Severity": 1,
-    "Scope": "Table, CalculatedTable",
+    "Scope": "TablePermission",
     "Expression": "RegEx.IsMatch(Expression,\"(?i)USERNAME\\(\")\r\nor\r\nRegEx.IsMatch(Expression,\"(?i)USERPRINCIPALNAME\\(\")",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "AVOID_USING_MANY-TO-MANY_RELATIONSHIPS_ON_TABLES_USED_FOR_DYNAMIC_ROW_LEVEL_SECURITY",
+    "Name": "[Security] [Performance] Avoid using many-to-many relationships on tables used for dynamic row level security",
+    "Category": "6. Security Performance",
+    "Description": "Using many-to-many relationships on tables which use dynamic row level security can cause serious query performance degradation. This pattern's performance problems compound when snowflaking multiple many-to-many relationships against a table which contains row level security. Instead, use one of the patterns shown in the article below where a single dimension table relates many-to-one to a security table.\r\n\r\nReference: https://www.elegantbi.com/post/dynamicrlspatterns",
+    "Severity": 3,
+    "Scope": "Table",
+    "Expression": "UsedInRelationships.Any(FromCardinality == \"Many\" and ToCardinality== \"Many\")\r\nand\r\nRowLevelSecurity.Any(it.Length > 0)",
     "CompatibilityLevel": 1200
   },
   {
@@ -598,6 +639,16 @@
     "Scope": "ModelRole",
     "Expression": "Members.Count() == 0",
     "FixExpression": "Delete()",
+    "CompatibilityLevel": 1200
+  },
+  {
+    "ID": "AVOID_THE_USERELATIONSHIP_FUNCTION_AND_RLS_AGAINST_THE_SAME_TABLE",
+    "Name": "[Security] Avoid the USERELATIONSHIP function and RLS against the same table",
+    "Category": "6. Security Performance",
+    "Description": "The USERELATIONSHIP function may not be used against a table which also leverages row-level security (RLS). This will generate an error when using the particular measure in a visual. This rule will highlight the table which is used in a measure's USERELATIONSHIP function as well as RLS.\r\n\r\nReference: https://blog.crossjoin.co.uk/2013/05/10/userelationship-and-tabular-row-security/",
+    "Severity": 3,
+    "Scope": "Table, CalculatedTable",
+    "Expression": "Model.AllMeasures.Any(RegEx.IsMatch(Expression,\"(?i)USERELATIONSHIP\\s*\\(\\s*.+?(?=])\\]\\s*,\\s*'*\" + current.Name + \"'*\\[\"))\r\nand\r\nRowLevelSecurity.Any(it <> null)",
     "CompatibilityLevel": 1200
   },
   {
@@ -622,10 +673,10 @@
     "CompatibilityLevel": 1200
   },
   {
-    "ID": "OBJECTS_MUST_NOT_START_OR_END_WITH_A_SPACE",
-    "Name": "[Naming Structure] Objects must not start or end with a space",
+    "ID": "OBJECTS_SHOULD_NOT_START_OR_END_WITH_A_SPACE",
+    "Name": "[Naming Structure] Objects should not start or end with a space",
     "Category": "9. Naming and Structure",
-    "Description": "Objects should not start or end with a space",
+    "Description": "Objects should not start or end with a space. E.g. unintentionally leaving a trailing space in an object name is a common occurrence when copying/duplicating objects, but should be avoided.",
     "Severity": 3,
     "Scope": "Model, Table, Measure, Hierarchy, Perspective, Partition, DataColumn, CalculatedColumn",
     "Expression": "Name.StartsWith(\" \") or Name.EndsWith(\" \")",
@@ -762,16 +813,6 @@
     "Severity": 1,
     "Scope": "Table, Measure, DataColumn, CalculatedColumn, CalculatedTable, CalculatedTableColumn, CalculationGroup",
     "Expression": "string.IsNullOrWhitespace(Description)\r\nand\r\nIsHidden == false",
-    "CompatibilityLevel": 1200
-  },
-  {
-    "ID": "AVOID_STRUCTURED_DATA_SOURCES_WITH_PROVIDER_PARTITIONS",
-    "Name": "[Data Preparation] Avoid structured data sources with provider partitions",
-    "Category": "1. Data Preparation",
-    "Description": "Power BI does not support provider (a.k.a. 'legacy') partitions which reference structured data sources. Partitions which reference structured data sources must use the M-language. Otherwise, 'provider' partitions must reference a 'provider' data source. This can be resolved by converting the structured data source into a provider data source (see 2nd reference link below).\r\n\r\nReference: https://docs.microsoft.com/power-bi/admin/service-premium-connect-tools#data-source-declaration\r\nReference: https://www.elegantbi.com/post/convertdatasources",
-    "Severity": 2,
-    "Scope": "Partition",
-    "Expression": "SourceType == \"Query\"\r\nand\r\nDataSource.Type == \"Structured\"",
     "CompatibilityLevel": 1200
   }
 ]

@@ -1,0 +1,11 @@
+{
+  "ID": "SET_ISAVAILABLEINMDX_TO_TRUE_ON_NECESSARY_COLUMNS",
+  "Name": "[Error Prevention] Set IsAvailableInMdx to true on necessary columns",
+  "Category": "2. Data Modelling",
+  "Description": "In order to avoid errors, ensure that attribute hierarchies are enabled if a column is used for sorting another column, used in a hierarchy, used in variations, or is sorted by another column.",
+  "Severity": 3,
+  "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
+  "Expression": "IsAvailableInMDX = false\r\n\r\nand\r\n(\r\nUsedInSortBy.Any()\r\nor\r\nUsedInHierarchies.Any()\r\nor\r\nUsedInVariations.Any()\r\nor\r\nSortByColumn != null\r\n)",
+  "FixExpression": "IsAvailableInMDX = true",
+  "CompatibilityLevel": 1200
+}

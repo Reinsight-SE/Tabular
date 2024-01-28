@@ -6,6 +6,6 @@
   "Severity": 1,
   "Scope": "DataColumn, CalculatedColumn, CalculatedTableColumn",
   "Expression": "Name.IndexOf(\"Date\", \"OrdinalIgnoreCase\") >= 0 and DataType = \"DateTime\" and string.IsNullOrWhitespace(FormatString)",
-  "FixExpression": "FormatString = \"mm/dd/yyyy\"",
+  "FixExpression": "FormatString = \"yyyy-mm-dd\"",
   "CompatibilityLevel": 1200
 }

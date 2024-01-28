@@ -4,6 +4,6 @@
   "Category": "2. Data Modelling",
   "Severity": 2,
   "Scope": "Relationship",
-  "Expression": "FromCardinality == \"Many\"\nand\nToCardinality == \"Many\"\nand\nCrossFilteringBehavior == \"BothDirections\"",
+  "Expression": "FromCardinality == \"Many\"\n\r\nand\r\n\nToCardinality == \"Many\"\r\n\nand\r\n\nCrossFilteringBehavior == \"BothDirections\"",
   "CompatibilityLevel": 1200
 }
