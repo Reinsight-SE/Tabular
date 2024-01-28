@@ -1,0 +1,10 @@
+{
+  "ID": "AVOID_USING_MANY-TO-MANY_RELATIONSHIPS_ON_TABLES_USED_FOR_DYNAMIC_ROW_LEVEL_SECURITY",
+  "Name": "[Security] [Performance] Avoid using many-to-many relationships on tables used for dynamic row level security",
+  "Category": "6. Security Performance",
+  "Description": "Using many-to-many relationships on tables which use dynamic row level security can cause serious query performance degradation. This pattern's performance problems compound when snowflaking multiple many-to-many relationships against a table which contains row level security. Instead, use one of the patterns shown in the article below where a single dimension table relates many-to-one to a security table.\r\n\r\nReference: https://www.elegantbi.com/post/dynamicrlspatterns",
+  "Severity": 3,
+  "Scope": "Table",
+  "Expression": "UsedInRelationships.Any(FromCardinality == \"Many\" and ToCardinality== \"Many\")\r\nand\r\nRowLevelSecurity.Any(it.Length > 0)",
+  "CompatibilityLevel": 1200
+}
