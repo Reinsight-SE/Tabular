@@ -16,9 +16,7 @@ The code in this repository is based on the following main sources (combined, ad
 
 ## Feedback
 
-Please share your feedback: ReinsightRD@reinsight.se.
-
-In case of issues or specific requests: [submit an issue](https://github.com/Reinsight-SE/Tabular/issues "submit an issue") within this repository.
+Please share your feedback. In case of issues or specific requests: [submit an issue](https://github.com/Reinsight-SE/Tabular/issues "submit an issue") within this repository.
 
 ## Setup (automated)
 
@@ -64,7 +62,3 @@ Following these steps will automatically load the Best Practice Rules into your 
 ## Requirements
 
 [Tabular Editor](https://tabulareditor.com/ "Tabular Editor") version 2.16.1 or higher.
-
-## Version History
-
-* 2021-07-30 Version 1.0
